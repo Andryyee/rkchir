@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"> <!-- Кодировка страницы-->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Для совместимости с IE-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Для красивого отображения на мобильных устройствах-->
+        <title>Самые различные сладости</title> <!-- Заголовок страницы -->
+        <link rel="icon" type="image/png" href="web_icon.png">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <header>
+            <input type="checkbox" id="burger">
+            <label for="burger"></label><br>
+            <nav>
+                <a href="#">Главная</a>
+                <a href="#">О нас</a>
+                <a href="#">Услуги</a>
+                <a href="#">Контакты</a>
+                <a href="#">Услуги</a>
+                <a href="#">Контакты</a>
+            </nav>
+        </header>
+        <form action="" method="get">
+            <p>
+                <label for="select">Выберите страну:</label>
+                <select multiple size="2" required>
+                    <option value="Russia">Россия</option>
+                    <option value="Greec">Греция</option>
+                    <option value="USA">США</option>
+                    <option value="Britain">Великобритания</option>
+                    <option value="China">Китай</option>
+                </select>
+            </p>
+            <p>
+                <label for="name">Введите имя: </label>
+                <input type="text" name="name" id="name" placeholder="Иван" checked>
+            </p>
+            <p>
+                <label for="tel">Введите телефон: </label>
+                <input type="tel" name="tel" id="tel" placeholder="88005553535" required>
+            </p>
+            <p>
+                <label for="email"> Введите email: </label>
+                <input type="email" name="email" id="email" placeholder="aaa@bbb.ru" required>
+            </p>
+            <p>
+                <label for="password">Введите пароль: </label>
+                <input type="password" name="password" id="password" placeholder="AAbDc124" pattern="[A-Z]{1,}[a-z]{1,}[0-9]{1,}" required>
+            </p>
+            <p>
+                <label for="file">Выберите файл: </label>
+                <input type="file" name="file" id="file" required>
+            </p>
+            <p>
+                <label for="checkbox">Выберите все подходящие варианты: </label>
+                <label>1</label>
+                <input type="checkbox" name="answer" id="1" value="1">
+                <label>2</label>
+                <input type="checkbox" name="answer" id="2" value="2">
+                <label>3</label>
+                <input type="checkbox" name="answer" id="3" value="3">
+                <label>4</label>
+                <input type="checkbox" name="answer" id="4" value="4">
+            </p>
+            <p>
+                <fieldset>
+                    <legend>Сколько будет "2+2"? <legend>
+                    <label>один
+                        <input type="radio" name="answer" id="1" value="1">
+                    </label>
+                    <label>два
+                        <input type="radio" name="answer" id="2" value="2">
+                    </label>
+                    <label>три
+                        <input type="radio" name="answer" id="3" value="3">
+                    </label>
+                    <label>четыре
+                        <input type="radio" name="answer" id="4" value="4">
+                    </label>
+                </fieldset>
+            </p>
+            <p>
+                <label for="datetime-local">Введите время отправки формы: </label>
+                <input type="datetime-local" name="datetime-local" id="datetime-local" min="2005-02-10" max="2999-12-31">
+            </p>
+            <p>
+                <label for="submit">Отправить форму</label>
+                <input type="submit" name="submit" id="submit">
+            </p>
+        </form>
+        <button>Нажми меня</button><br>
+        <label for="about">Расскажи о себе!</label><br>
+        <textarea id="about" name="about" rows="7" cols="35" placeholder="Напишите минимум 100 символов и максимум 3000" minlength="100" maxlength="3000" required></textarea><br>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d513788.9098625023!2d36.73316254279506!3d55.59541715508965!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54afc73d4b0c9%3A0x3d44d6cc5757cf4c!2z0JzQvtGB0LrQstCw!5e0!3m2!1sru!2sru!4v1695882454910!5m2!1sru!2sru" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><br>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/1GrOo3SccEY?si=1cmLyrmMeRyzYS_3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </body>
+</html>

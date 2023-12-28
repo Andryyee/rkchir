@@ -1,0 +1,67 @@
+form{
+    background: lightgray;
+    margin: 0 300px 0 0;
+}
+
+#name:focus{
+    background: red;
+}
+#tel:focus{
+    background: green;
+}
+#email:focus{
+    background: blue;
+}
+#password:focus{
+    background: cyan;
+}
+#file:focus{
+    background: burlywood;
+}
+#answer:focus{
+    background: yellow;
+}
+::placeholder{
+    color: darkmagenta;
+}
+#burger, label[for="burger"]{
+    visibility: hidden;
+    user-select: none;
+}
+@media screen and (min-width: 750px) and (max-width: 1200px)
+{
+    main{
+        flex-direction: column;
+        align-content: space-between;
+    }
+}
+@media screen and (max-width: 750px) {
+    label[for="burger"] {
+        visibility: visible;
+        position: fixed;
+        left: 5px;
+    }
+    label[for="burger"]::before{
+        content: '☰';
+    }
+    nav{
+        visibility: hidden;
+        border-radius: 0;
+        background-color:rgb(72, 120, 241);
+        border-color: #04007d;
+        width: 200px;
+        position: fixed;
+        top: 40px;
+    }
+    #burger:checked + label{
+        transform: rotate(0.25turn);
+    }
+    #burger:checked + label + br + nav{
+        visibility: visible;
+        flex-direction: column;
+    }
+    main{
+        flex-direction: column;
+        align-content: space-between;
+    }
+}
