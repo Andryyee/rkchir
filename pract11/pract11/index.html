@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8"> <!-- Кодировка страницы-->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Для совместимости с IE-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Для красивого отображения на мобильных устройствах-->
+        <title>Самые различные сладости</title> <!-- Заголовок страницы -->
+        <link rel="icon" type="image/png" href="web_icon.png">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <script src="script.js"></script>
+        <div class="buttons">
+            <label id="price">Total price: 0</label> <br>
+            <button onclick="newitem(); busketupdate()">Добавить в корзину</button><br>
+            <button onclick="del(); busketupdate()">Удалить из корзины</button><br>
+            <button onclick="cl(); busketupdate()">Очистить корзину</button><br>
+            <button onclick="more(); busketupdate()">Отобразить часть элементов</button><br>
+            <input type="radio" value="1" name="big"> От минимального до максимального<br>
+            <input type="radio" value="2" name="big"> От максимального до минимального<br>
+            <input id="more" placeholder="Введите минимальную цену"></input>
+            <input id="less" placeholder="Введите максимальную цену"></input> <br>
+            <button id="startsort" onclick="sort(); busketupdate();">Сортировать</button>
+            <label id="B"></label>  <br> <br> <br>
+            <label id="A"></label>
+        </div>
+    </body>
+</html>
