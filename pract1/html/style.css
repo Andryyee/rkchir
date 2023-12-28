@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+#logo{
+    margin: auto 200px auto 10px;
+    position: sticky;
+    top: 0;
+}
+
+#display{   
+    display: contents;
+}
+
+nav{
+    position: fixed;
+    left: 80%; top: 20%;
+}
+
+.Content {
+    background-color: gray; 
+    border-radius: 100px;
+    text-align: center;
+    width: 500px;
+    margin: auto;
+    position: relative;
+    text-decoration: underline;
+    list-style: armenian;
+}
+
+a:link {
+    color: blue;
+}
+
+a:active {
+    color: red;
+}
+
+p:active {
+    background: #ebc088;
+}
+
+a:visited {
+    color: purple;
+}
+
+a:hover {
+    background: rgb(255, 94, 0);
+}
+
+#Beginning {
+    background-color: rgb(177, 93, 33);
+    width: 500px;
+    margin: 10px auto;
+    border-radius: 100px;
+    font-family: 'Pacifico', cursive;
+    position: fixed;
+    left: 70%; top: 0px;
+}
+
+#img{
+    float: left;
+    left: 1rem;
+    display: block;
+}
+
+#To_the_end{        
+    position: absolute;
+}
+
+#dp{
+    display: grid;
+}
+
+#div1{
+    height: 100px;
+    width: 200px;
+    background: yellow;
+    display: block;
+}
+#div2{
+    height: 100px;
+    width: 200px;
+    background: cyan;
+    display: block;
+}
+#div3{
+    height: 100px;
+    width: 200px;
+    background: orange;
+    display: block;
+}
+.divblock{
+    font-size: 25px;
+    margin-top: 70px;
+    margin-left: 70px;
+}
+.main{
+    float:right;
+    margin: 50px;
+    text-align: center;
+}
