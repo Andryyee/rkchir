@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Практика 14</title>
+        <style>
+            body{
+                background: linear-gradient(to bottom, yellow, orange, white);
+            }
+
+            div.task h1 {
+                display: block;
+                width: fit-content;
+                margin: auto;
+            }
+
+            div#gallery {
+                width: 60%;
+                margin: auto;
+                border: 2px solid #000;
+                display: grid;
+                grid-template-columns: 100%;
+                grid-template-rows: repeat(2, auto);
+            }
+
+            div#gallery img {
+                width: 100%;
+            }
+
+            div#small_images {
+                display: grid;
+                grid-template-rows: auto;
+                grid-template-columns: repeat(4, 1fr);
+                column-gap: 10px;
+            }
+
+            div#small_images div.small_image {
+                justify-self: center;
+                align-self: center;
+            }
+
+            div#current_image img {
+                max-height: 400px;
+            }
+
+            ul {
+                display: block;
+                width: 20%;
+                margin: 0 auto 0 0;
+            }
+
+            ul li {
+                background-color: none;
+            }
+
+            ul li.selected {
+                background-color: #ff0;
+            }
+
+            #slider {
+                width: 300px;
+                height: 20px;
+                background-color: #ccc;
+                position: relative;
+                margin: 50px;
+            }
+
+            #slider-handle {
+                width: 20px;
+                height: 20px;
+                background-color: #007bff;
+                position: absolute;
+                top: 0;
+                cursor: pointer;
+            }
+
+            #container {
+                display: grid;
+                grid-template-columns: 200px 200px;
+                column-gap: 10px;
+                margin: 10px auto 10px 10px;
+            }
+
+            #cart {
+                width: 200px;
+                background-color: #f0f0f0;
+                border: 2px solid #ccc;
+                margin-right: 20px;
+                float: left;
+            }
+
+            #cart-header {
+                text-align: center;
+                padding: 10px;
+                background-color: #ddd;
+                border-bottom: 1px solid #ccc;
+            }
+
+            #cart-content {
+                padding: 10px;
+                overflow-y: auto;
+            }
+
+            .item {
+                padding: 5px;
+                margin: 5px;
+                border: 1px solid #ccc;
+                cursor: move;
+            }
+
+            div#t6c {
+                width: 300px;
+                height: 300px;
+                border: 1px solid #000;
+                position: relative;
+            }
+
+            #t6c .animated {
+                width: 50px;
+                height: 50px;
+                position: absolute;
+                left: 125px;
+                top: 125px;
+                background-color: #000;
+            }
+
+            #block1 {
+                background-color: black !important;
+                transform: translate(0px, -50px);
+            }
+
+            #block2 {
+                background-color: orange !important;
+                transform: translate(0px, 50px);
+            }
+
+            #block3 {
+                background-color: burlywood !important;
+                transform: translate(50px, 50px);
+            }
+        </style>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+        <script>
+            function init_task1() {
+                document.getElementById('contents').addEventListener('click', function(event) {
+                    if (event.target.tagName === 'A') {
+                        var text = "Вы действительно хотите перейти по ссылке ";
+                        text += event.target.innerHTML;
+                        text += " (страница назначения: " + event.target.href + ")?";
+                        var confirmation = confirm(text);
+
+                        if (!confirmation) {
+                            event.preventDefault();
+                        }
+                    }
+                });
+            }
+
+            function init_task2() {
+                var gallery = document.getElementById('gallery');
+                var small_images = gallery.getElementsByClassName('small_image');
+                for (var i = 0; i < small_images.length; i++)
+                {
+                    small_images[i].setAttribute("onclick", "document.getElementById('cii').setAttribute('src', '" + small_images[i].querySelector('img').getAttribute('src') + "')");
+                }
+            }
+
+           
+
+            function toggleSelect(li) {
+                li.classList.toggle('selected');
+            }
+
+            function singleSelect(ul, li) {
+                let selected = ul.querySelectorAll('.selected');
+                for (let elem of selected) {
+                    elem.classList.remove('selected');
+                }
+                li.classList.add('selected');
+            }
+
+            function init_task3() {
+                var ul = document.getElementById('t3ul');
+                ul.onclick = function(event) {
+                    if (event.target.tagName != "LI") return;
+
+                    if (event.ctrlKey || event.metaKey) {
+                        toggleSelect(event.target);
+                    } 
+                    else {
+                        singleSelect(ul, event.target);
+                    }
+                }
+
+                // предотвращает ненужное выделение элементов списка при клике
+                ul.onmousedown = function() {
+                    return false;
+                };
+            }
+
+            
+
+            var isDragging = false;
+
+            function init_task4() {
+                var slider = document.getElementById('slider');
+                var handle = document.getElementById('slider-handle');
+                // Функция для обработки события движения мыши
+                function handleMouseMove(event) {
+                    if (isDragging) {
+                        var sliderRect = slider.getBoundingClientRect();
+                        var positionX = event.clientX - sliderRect.left;
+
+                        // Устанавливаем позицию бегунка в пределах слайдера
+                        if (positionX < 0) {
+                            positionX = 0;
+                        } else if (positionX > sliderRect.width) {
+                            positionX = sliderRect.width;
+                        }
+
+                        handle.style.left = positionX + 'px';
+                    }
+                }
+
+                // Обработчик нажатия на бегунок
+                handle.setAttribute('onmousedown', function() {
+                    isDragging = true;
+                    console.log('clicked');
+                });
+                handle.addEventListener('mousedown', function() {
+                    isDragging = true;
+                    console.log('clicked');
+                });
+
+                // Обработчик отпускания мыши
+                document.addEventListener('mouseup', function() {
+                    isDragging = false;
+                });
+
+                // Обработчик движения мыши в документе
+                document.addEventListener('mousemove', handleMouseMove);
+
+                // Обработчик изменения размеров окна
+                window.addEventListener('resize', function() {
+                    // При изменении размеров окна пересчитываем позицию бегунка
+                    handleMouseMove({
+                        clientX: parseInt(handle.style.left)
+                    });
+                });
+            }
+
+            function init_task5() {
+                $(document).ready(function() {
+                    $(".item").draggable({
+                        revert: "invalid",
+                        helper: "clone",
+                        cursor: "move"
+                    });
+
+                    $("#cart").droppable({
+                        accept: ".item",
+                        drop: function(event, ui) {
+                            var price = ui.helper.data("price");
+                            updateCart(price);
+                        }
+                    });
+
+
+                    function updateCart(price) {
+                        var currentTotal = parseInt($("#cart-content").text()) || 0;
+
+                        var newTotal = currentTotal + price;
+                        $("#cart-content").text(newTotal);
+                    }
+                });
+            }
+
+            var rotation = 0;
+            var rotation_speed = 0.25;
+            var rotation_shift = 0.005;
+            var rotation_max = 1;
+            var rotation_min = 0.1;
+            var radius = 100;
+
+            function init_task6() {
+                let timerId = setInterval(function () {
+                    rotation += rotation_speed;
+                    if (rotation >= 360.0) rotation -= 360.0;
+                    var block1 = document.getElementById('block1');
+                    var block2 = document.getElementById('block2');
+                    var block1x = radius * Math.cos(rotation * Math.PI / 180);
+                    var block1y = radius * Math.sin(rotation * Math.PI / 180);
+                    var block2x = -block1x;
+                    var block2y = -block1y;
+                    block1.style.transform = "translate(" + block1x + "px, " + 0 + "px) rotate(" + rotation + "deg)";
+                    block2.style.transform = "translate(" + block2x + "px, " + 0 + "px) rotate(" + (rotation + 180) + "deg)";
+                    //change rotation speed
+                    rotation_speed += rotation_shift;
+                    if ((rotation_speed >= rotation_max) || (rotation_speed <= rotation_min))
+                    {
+                        rotation_shift = -rotation_shift;
+                    }
+                }, 10);
+                let timerId2 = setInterval(function() {
+                    rotation += rotation_speed;
+                    if (rotation >= 360.0) rotation -= 360.0;
+                    var block3 = document.getElementById('block3');
+                    var block3x = radius * Math.cos(rotation * Math.PI / 180);
+                    var block3y = radius * Math.sin(rotation * Math.PI / 180);
+                    block3.style.transform = "translate(" + block3x + "px, " + block3y + "px) rotate(" + (rotation + 180) + "deg)";
+                    rotation_speed += rotation_shift;
+                    if ((rotation_speed >= rotation_max) || (rotation_speed <= rotation_min))
+                    {
+                        rotation_shift = -rotation_shift;
+                    }
+                }, 10);
+            }
+        </script>
+    </head>
+    <body onload="init_task1(); init_task2(); init_task3(); init_task4(); init_task5(); init_task6();">
+        <div class="task">
+            <p>Предупреждение: все ссылки, начиная с третьей, ведут к роликам на Ютубе со скримерами. Вы предупреждены.</p>
+            <div id="contents">
+                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Ссылка №1</a><br>
+                <a href="https://youtu.be/0dsOtrMCQgw?t=1794">Ссылка №2</a><br>
+                <a href="https://youtu.be/U3TqOc2rR28?t=563">Ссылка №3</a><br>
+                <a href="https://youtu.be/1NTehAWftLo?t=1238">Ссылка №4</a><br>
+                <a href="https://www.youtube.com/watch?v=b2kkMA6pvj8">Ссылка №5</a>
+            </div>
+        </div>
+        <div class="task">
+            <div id="gallery">
+                <div id="current_image">
+                    <img id="cii" src="chak.jpg">
+                </div>
+                <div id="small_images">
+                    <div class="small_image">
+                        <img src="church.jpg">
+                    </div>
+                    <div class="small_image">
+                        <img src="dango.jpg">
+                    </div>
+                    <div class="small_image">
+                        <img src="maf.jpg">
+                    </div>
+                    <div class="small_image">
+                        <img src="moti.jpg">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="task">
+            <ul id="t3ul">
+                <li class="selected">A</li>
+                <li>AA</li>
+                <li>AAA</li>
+                <li>AAAA</li>
+                <li>AAAAA</li>
+                <li>AAAAAA</li>
+                <li>AAAAAAA</li>
+                <li>AAAAAAAA</li>
+            </ul>
+        </div>
+        <div class="task">
+            <div id="slider">
+                <div id="slider-handle"></div>
+            </div>
+        </div>
+        <div class="task">
+            <div id="container">
+                <div id="cart">
+                    <div id="cart-header">Корзина</div>
+                    <div id="cart-content"></div>
+                </div>
+            
+                <div id="items">
+                    <div class="item" data-price="10">Товар 1 (10к)</div>
+                    <div class="item" data-price="20">Товар 2 (20к)</div>
+                    <div class="item" data-price="30">Товар 3 (30к)</div>
+                </div>
+            </div>
+        </div>
+        <div class="task">
+            <div id="t6c">
+                <div class="animated" id="block1">
+
+                </div>
+                <div class="animated" id="block2">
+    
+                </div>
+                <div class="animated" id="block3">
+    
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
